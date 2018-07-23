@@ -1,8 +1,19 @@
 language: java
 jdk:
  - oraclejdk8
+addons:
+  sonarcloud:
+    organization: "lehnert-andre-github" # the key of the org you chose at step #3
+    token:
+      secure: $SONAR_CLOUD_KEY # encrypted value of your token
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner
 deploy:
  provider: heroku
  api-key: 
   secure: $HEROKU_API_KEY
   app: travis-ci-example-spring-boot
+
+
+  
